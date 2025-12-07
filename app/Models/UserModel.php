@@ -53,5 +53,16 @@ class UserModel extends Model
         return $data;
     }
 
+
+    /* Hash password sebelum update jika ada */
+    protected function beforeUpdate(array $data)
+    {
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = password_hash($data['data']
+            ['password'], PASSWORD_DEFAULT);
+        }
+        return $data;
+    }
+
     
 }
